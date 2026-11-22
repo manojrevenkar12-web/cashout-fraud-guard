@@ -55,8 +55,9 @@ class TypicalDesk(cfg: JsonObject, private val rec: Recorder? = null) : Desk {
     }
 
     override fun afterStepUp(c: Cashout, r: StepUpResult, before: Decision, o: Observed): Decision {
-        if (!r.completed || !r.live || r.faceTemplate == null) return Decision(Action.HOLD, 0.5, listOf(Reason.STEP_UP_FAILED), 0.0)
-        o.recordFace(c.account, r.faceTemplate, c.day)
+        val face = r.faceTemplate
+        if (!r.completed || !r.live || face == null) return Decision(Action.HOLD, 0.5, listOf(Reason.STEP_UP_FAILED), 0.0)
+        o.recordFace(c.account, face, c.day)
         return if (c.cents >= reviewAbove) Decision(Action.HOLD, 0.5, listOf(Reason.LARGE_AMOUNT), 0.0) else Decision(Action.PAY, 0.0, emptyList())
     }
 
@@ -91,8 +92,9 @@ class StrictDesk(cfg: JsonObject) : Desk {
     }
 
     override fun afterStepUp(c: Cashout, r: StepUpResult, before: Decision, o: Observed): Decision {
-        if (!r.completed || !r.live || r.faceTemplate == null) return Decision(Action.HOLD, 0.5, listOf(Reason.STEP_UP_FAILED), 0.0)
-        o.recordFace(c.account, r.faceTemplate, c.day)
+        val face = r.faceTemplate
+        if (!r.completed || !r.live || face == null) return Decision(Action.HOLD, 0.5, listOf(Reason.STEP_UP_FAILED), 0.0)
+        o.recordFace(c.account, face, c.day)
         return Decision(Action.PAY, 0.0, emptyList())
     }
 
