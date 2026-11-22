@@ -1,0 +1,62 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1-cashout-requests-and-decisions
+      author: manoj
+      changes:
+        - createTable:
+            tableName: cashout_request
+            columns:
+              - column: {name: request_id, type: varchar(64), constraints: {primaryKey: true, nullable: false}}
+              - column: {name: account_id, type: int, constraints: {nullable: false}}
+              - column: {name: day, type: int, constraints: {nullable: false}}
+              - column: {name: hour, type: int, constraints: {nullable: false}}
+              - column: {name: cents, type: int, constraints: {nullable: false}}
+              - column: {name: method, type: varchar(16), constraints: {nullable: false}}
+              - column: {name: payout_account, type: int, constraints: {nullable: false}}
+              - column: {name: device, type: int, constraints: {nullable: false}}
+              - column: {name: created_at, type: timestamp(3), defaultValueComputed: CURRENT_TIMESTAMP(3), constraints: {nullable: false}}
+        - createTable:
+            tableName: decision
+            columns:
+              - column: {name: id, type: bigint, autoIncrement: true, constraints: {primaryKey: true, nullable: false}}
+              - column: {name: request_id, type: varchar(64), constraints: {nullable: false, foreignKeyName: fk_decision_request, references: cashout_request(request_id)}}
+              - column: {name: action, type: varchar(16), constraints: {nullable: false}}
+              - column: {name: score, type: double, constraints: {nullable: false}}
+              - column: {name: reasons, type: varchar(512), constraints: {nullable: false}}
+              - column: {name: priority, type: double, constraints: {nullable: false}}
+              - column: {name: created_at, type: timestamp(3), defaultValueComputed: CURRENT_TIMESTAMP(3), constraints: {nullable: false}}
+        - createIndex:
+            tableName: decision
+            indexName: ix_decision_request
+            columns:
+              - column: {name: request_id}
+        - createIndex:
+            tableName: cashout_request
+            indexName: ix_request_account
+            columns:
+              - column: {name: account_id}
+  - changeSet:
+      id: 2-verdicts-and-outbox
+      author: manoj
+      changes:
+        - createTable:
+            tableName: verdict
+            columns:
+              - column: {name: id, type: bigint, autoIncrement: true, constraints: {primaryKey: true, nullable: false}}
+              - column: {name: account_id, type: int, constraints: {nullable: false}}
+              - column: {name: fraud, type: boolean, constraints: {nullable: false}}
+              - column: {name: analyst, type: varchar(64), constraints: {nullable: false}}
+              - column: {name: created_at, type: timestamp(3), defaultValueComputed: CURRENT_TIMESTAMP(3), constraints: {nullable: false}}
+        - createTable:
+            tableName: outbox
+            columns:
+              - column: {name: id, type: bigint, autoIncrement: true, constraints: {primaryKey: true, nullable: false}}
+              - column: {name: topic, type: varchar(64), constraints: {nullable: false}}
+              - column: {name: payload, type: text, constraints: {nullable: false}}
+              - column: {name: created_at, type: timestamp(3), defaultValueComputed: CURRENT_TIMESTAMP(3), constraints: {nullable: false}}
+              - column: {name: published_at, type: timestamp(3)}
+        - createIndex:
+            tableName: outbox
+            indexName: ix_outbox_unpublished
+            columns:
+              - column: {name: published_at}

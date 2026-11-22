@@ -1,0 +1,83 @@
+{
+  "_comment": "How each design decides. Read by eval/ and the service; never by world/.",
+  "model": {
+    "l2": 0.01,
+    "iterations": 300,
+    "rate": 0.5
+  },
+  "typical": {
+    "reviewAboveCents": 2000
+  },
+  "strict": {
+    "ringSize": 3,
+    "vpnShare": 0.3,
+    "sharedFingerprint": 2
+  },
+  "designs": {
+    "typical": {
+      "label": "Typical setup: VPN block, selfie at first payout, large cash-outs reviewed in order",
+      "kind": "typical"
+    },
+    "strict_rules": {
+      "label": "Strict rules: ban on any red flag",
+      "kind": "strict"
+    },
+    "model_only": {
+      "label": "Risk model alone: pay or hold, no ring graph, no selfie",
+      "kind": "guard",
+      "payBelow": 0.3,
+      "reviewFrom": 0.3,
+      "stepUp": false,
+      "useGraph": false,
+      "ringPropagation": false,
+      "priorityQueue": true,
+      "appealReader": false,
+      "evidenceFile": false,
+      "holdConfirmedRing": 0,
+      "ringReview": false,
+      "trainOnRuleLabels": false
+    },
+    "guard": {
+      "label": "This guard",
+      "kind": "guard",
+      "payBelow": 0.15,
+      "reviewFrom": 0.6,
+      "stepUp": true,
+      "useGraph": true,
+      "ringPropagation": true,
+      "priorityQueue": true,
+      "appealReader": true,
+      "evidenceFile": true,
+      "holdConfirmedRing": 1,
+      "ringReview": true,
+      "trainOnRuleLabels": false
+    },
+    "no_graph": {
+      "label": "Guard without the ring graph",
+      "base": "guard",
+      "useGraph": false,
+      "ringPropagation": false,
+      "holdConfirmedRing": 0
+    },
+    "no_step_up": {
+      "label": "Guard without the selfie step-up",
+      "base": "guard",
+      "stepUp": false
+    },
+    "no_ring_review": {
+      "label": "Guard reviewing a confirmed ring one account at a time",
+      "base": "guard",
+      "ringReview": false
+    },
+    "rule_labels": {
+      "label": "Guard trained on the old rule's bans as fraud labels",
+      "base": "guard",
+      "trainOnRuleLabels": true
+    },
+    "no_reply_drafts": {
+      "label": "Guard without the appeal reader and reply drafts",
+      "base": "guard",
+      "appealReader": false
+    }
+  }
+}

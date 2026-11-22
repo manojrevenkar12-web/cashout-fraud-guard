@@ -1,0 +1,82 @@
+{
+  "_comment": "The simulated rewarded-gaming app: players, fraudsters, the analyst team. Read only by world/; never by the guard.",
+  "historyDays": 56,
+  "liveDays": 56,
+  "honestPlayers": 9000,
+  "countries": {"US": 0.7, "DE": 0.1, "BR": 0.1, "GB": 0.1},
+  "spanishShareUS": 0.2,
+  "honest": {
+    "activeProb": [0.25, 0.9],
+    "minutesMedian": 40,
+    "centsPerMinute": 0.9,
+    "startSpreadH": 3.0,
+    "thresholdCents": [200, 1500],
+    "firstThresholdCents": 100,
+    "revenuePerCentPaid": 1.6,
+    "dailyMarginCents": 12.0,
+    "vpnUser": 0.06,
+    "familyGroups": 0.025,
+    "familySamePayout": 0.6,
+    "grinder": 0.05,
+    "traveller": 0.03,
+    "oldPhone": 0.08,
+    "phoneChange": 0.03,
+    "mobilePrefixes": 300,
+    "vpnExitPrefixes": 40
+  },
+  "fraud": {
+    "farms": 6,
+    "farmAccounts": [20, 70],
+    "farmPayoutAccounts": [2, 6],
+    "farmFingerprints": [3, 10],
+    "farmOperators": 2,
+    "farmReplaceProb": 0.8,
+    "farmReplaceDelayDays": 2,
+    "farmRevenuePerCentPaid": 0.15,
+    "multiHumans": 110,
+    "multiAccounts": [2, 6],
+    "multiSameFingerprint": 0.6,
+    "multiSamePayout": 0.7,
+    "multiQuitAfterFirst": 0.6,
+    "multiRevenuePerCentPaid": 0.3,
+    "geoVpn": 140,
+    "geoRevenuePerCentPaid": 0.45,
+    "takeovers": 45,
+    "takeoverBalanceCents": [2000, 8000],
+    "offerFraud": 60,
+    "offerRevenuePerCentPaid": -0.3
+  },
+  "stepUp": {
+    "costCents": 25,
+    "complete": {"HONEST": 0.93, "FARM": 0.3, "MULTI": 0.85, "GEO_VPN": 0.8, "TAKEOVER": 0.5, "OFFER": 0.6},
+    "live": 0.97,
+    "templateNoise": 0.02
+  },
+  "analysts": {
+    "minutesPerDay": 180,
+    "minutesPerRingMember": 1,
+    "minutesPerCase": 12,
+    "minutesPerCaseWithFile": 5,
+    "accuracy": 0.88,
+    "accuracyWithFile": 0.95,
+    "accuracyWithTrueClaim": 0.97,
+    "costPerHourCents": 3500
+  },
+  "players": {
+    "waitChurnPerDay": 0.05,
+    "blockChurn": 0.9,
+    "blockChurnIfRestoredWithin3Days": 0.3,
+    "churnTailDays": 180,
+    "appealIfBlocked": {"HONEST": 0.6, "FRAUD": 0.3},
+    "appealIfHeldDays": 1,
+    "appealIfHeld": {"HONEST": 0.4, "FRAUD": 0.25},
+    "supportReReviewShare": 0.1
+  },
+  "support": {"minutesPerTicket": 6, "minutesPerTicketWithDraft": 1.5, "costPerHourCents": 2500},
+  "reports": {
+    "takeoverChargebackProb": 0.8,
+    "takeoverChargebackDays": 7,
+    "offerClawbackProb": 0.7,
+    "offerClawbackDays": 30
+  }
+}

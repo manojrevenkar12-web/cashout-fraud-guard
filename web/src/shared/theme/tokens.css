@@ -1,0 +1,71 @@
+/* Theme tokens. The five cost parts use the validated categorical slots 1-5 in fixed order; the outcome of a
+ * cash-out uses one blue ramp, darkest = paid at once. "This guard" is marked with the violet slot, never by colour alone. */
+:root {
+  --paper: #f5f3f9;
+  --surface: #ffffff;
+  --ink: #1e1530;
+  --ink-muted: #5f576d;
+  --rule: #e0dce8;
+  --track: #ebe8f1;
+  --mark: #6250d6;
+  --mark-wash: #ece9fb;
+
+  --cost-1: #2a78d6;
+  --cost-2: #eb6834;
+  --cost-3: #1baf7a;
+  --cost-4: #eda100;
+  --cost-5: #e87ba4;
+
+  --flow-1: #0d366b;
+  --flow-2: #1c5cab;
+  --flow-3: #3987e5;
+  --flow-4: #86b6ef;
+
+  --font: "Rubik", system-ui, sans-serif;
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-bold: 600;
+  --leading: 1.5;
+  --step--1: 0.875rem;
+  --step-0: 1rem;
+  --step-1: 1.25rem;
+  --step-2: 1.75rem;
+  --step-3: 2.75rem;
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2.25rem;
+  --space-7: 3.5rem;
+  --measure: 66ch;
+  --page: 74rem;
+  --radius: 6px;
+  --hairline: 1px;
+  --bar-h: 2.5rem;
+  --shimmer: 1.4s;
+  --claim: var(--cost-2);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #15111d;
+    --surface: #1f1a29;
+    --ink: #efebf6;
+    --ink-muted: #a9a1b8;
+    --rule: #342d40;
+    --track: #2a2435;
+    --mark: #9085e9;
+    --mark-wash: #2a2547;
+    --cost-1: #3987e5;
+    --cost-2: #d95926;
+    --cost-3: #199e70;
+    --cost-4: #c98500;
+    --cost-5: #d55181;
+    --flow-1: #cde2fb;
+    --flow-2: #86b6ef;
+    --flow-3: #3987e5;
+    --flow-4: #1c5cab;
+  }
+}

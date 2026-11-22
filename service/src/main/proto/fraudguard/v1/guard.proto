@@ -1,0 +1,132 @@
+syntax = "proto3";
+
+package fraudguard.v1;
+
+option java_multiple_files = true;
+option java_package = "fraudguard.v1";
+
+// The cash-out guard. The app backend calls Check before paying; the selfie vendor's callback calls SubmitSelfie;
+// the analyst console calls GetCaseFile and RecordVerdict; support calls ReadAppeal.
+service CashoutGuard {
+  rpc RecordActivity(Activity) returns (ActivityAck);
+  rpc Check(CashoutRequest) returns (CashoutDecision);
+  rpc SubmitSelfie(SelfieResult) returns (CashoutDecision);
+  rpc GetCaseFile(CaseFileRequest) returns (CaseFile);
+  rpc RecordVerdict(Verdict) returns (VerdictAck);
+  rpc ReadAppeal(Appeal) returns (AppealAnswer);
+}
+
+enum Action {
+  ACTION_UNSPECIFIED = 0;
+  PAY = 1;
+  STEP_UP = 2;
+  HOLD = 3;
+  BLOCK = 4;
+}
+
+enum Integrity {
+  INTEGRITY_UNSPECIFIED = 0;
+  STRONG = 1;
+  BASIC = 2;
+  FAILED = 3;
+}
+
+enum Network {
+  NETWORK_UNSPECIFIED = 0;
+  RESIDENTIAL = 1;
+  MOBILE = 2;
+  DATACENTER = 3;
+  VPN = 4;
+}
+
+// One account's activity on one day, from the activity topic.
+message Activity {
+  int32 account = 1;
+  int32 day = 2;
+  float minutes = 3;
+  int32 earned_cents = 4;
+  int32 ad_views = 5;
+  int32 offers = 6;
+  float offer_minutes = 7;
+  float start_spread_h = 8;
+  Network network = 9;
+  int32 ip_prefix = 10;
+  bool ip_matches_store_country = 11;
+  int32 device = 12;
+  int32 device_fingerprint = 13;
+  Integrity integrity = 14;
+  int32 signup_day = 15;
+  string store_country = 16;
+}
+
+message ActivityAck {
+  int32 account = 1;
+}
+
+// request_id is the idempotency key: a retried request gets the stored decision back.
+message CashoutRequest {
+  string request_id = 1;
+  int32 account = 2;
+  int32 day = 3;
+  int32 hour = 4;
+  int32 cents = 5;
+  string method = 6;
+  int32 payout_account = 7;
+  int32 device = 8;
+}
+
+message CashoutDecision {
+  string request_id = 1;
+  Action action = 2;
+  double score = 3;
+  repeated string reasons = 4;
+  double priority = 5;
+  bool replayed = 6;
+}
+
+message SelfieResult {
+  string request_id = 1;
+  bool completed = 2;
+  bool live = 3;
+  bool has_template = 4;
+  int32 face_template = 5;
+}
+
+message CaseFileRequest {
+  string request_id = 1;
+}
+
+message CaseFile {
+  int32 account = 1;
+  double score = 2;
+  repeated string reasons = 3;
+  map<string, double> features = 4;
+  int32 ring_size = 5;
+  int32 ring_confirmed_fraud = 6;
+  repeated int32 ring_sample = 7;
+  int32 accounts_on_payout_account = 8;
+}
+
+message Verdict {
+  int32 account = 1;
+  bool fraud = 2;
+  string analyst = 3;
+}
+
+message VerdictAck {
+  // The rest of the ring, for the same analyst to decide in the same review.
+  repeated int32 ring_to_review = 1;
+}
+
+message Appeal {
+  string request_id = 1;
+  string text = 2;
+}
+
+message AppealAnswer {
+  string language = 1;
+  string claim = 2;
+  bool requeued = 3;
+  string reply_draft = 4;
+  string reader = 5;
+}

@@ -1,0 +1,62 @@
+# The guard on GKE: Workload Identity, a Cloud SQL Auth Proxy sidecar, gRPC health probes.
+# One replica: the observed store (activity, link graph) lives in memory, so a second pod would see half the activity.
+# Decisions are already safe across pods (MySQL, one row per request id); a shared store is the step before scaling out.
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: cashout-fraud-guard
+  namespace: fraud
+  annotations:
+    iam.gke.io/gcp-service-account: cashout-fraud-guard@PROJECT_ID.iam.gserviceaccount.com
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cashout-fraud-guard
+  namespace: fraud
+spec:
+  replicas: 1
+  selector:
+    matchLabels: {app: cashout-fraud-guard}
+  template:
+    metadata:
+      labels: {app: cashout-fraud-guard}
+    spec:
+      serviceAccountName: cashout-fraud-guard
+      containers:
+        - name: guard
+          image: REGION-docker.pkg.dev/PROJECT_ID/cashout-fraud-guard/guard:TAG
+          ports:
+            - {name: grpc, containerPort: 50051}
+          env:
+            - {name: JDBC_URL, value: "jdbc:mysql://127.0.0.1:3306/fraudguard"}
+            - {name: DB_USER, value: fraudguard}
+            - name: DB_PASSWORD
+              valueFrom: {secretKeyRef: {name: cashout-fraud-guard, key: db-password}}
+            - name: ANTHROPIC_API_KEY
+              valueFrom: {secretKeyRef: {name: cashout-fraud-guard, key: anthropic-api-key, optional: true}}
+          readinessProbe:
+            grpc: {port: 50051}
+            periodSeconds: 5
+          livenessProbe:
+            grpc: {port: 50051}
+            periodSeconds: 10
+          resources:
+            requests: {cpu: 250m, memory: 768Mi}
+            limits: {memory: 1536Mi}
+        - name: cloud-sql-proxy
+          image: gcr.io/cloud-sql-connectors/cloud-sql-proxy:2.14.1
+          args: ["--private-ip", "--port=3306", "PROJECT_ID:REGION:cashout-fraud-guard"]
+          securityContext: {runAsNonRoot: true}
+          resources:
+            requests: {cpu: 50m, memory: 64Mi}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cashout-fraud-guard
+  namespace: fraud
+spec:
+  selector: {app: cashout-fraud-guard}
+  ports:
+    - {name: grpc, port: 50051, targetPort: grpc, appProtocol: grpc}

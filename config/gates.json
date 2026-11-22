@@ -1,0 +1,10 @@
+{
+  "_comment": "Set on the development seeds before the held-out run. Never loosened after it.",
+  "guard": {
+    "costCutVsTypicalLowMin": 0.55,
+    "fraudLossCutVsTypicalMin": 0.6,
+    "wrongBansPer10kMax": 5.0,
+    "honestHeldOver24hShareMax": 0.01,
+    "everyBanByAPerson": true
+  }
+}

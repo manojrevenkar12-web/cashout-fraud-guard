@@ -1,0 +1,64 @@
+name: ci
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  kotlin:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0 # the held-out check reads the lock's history
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: "21"
+      - uses: gradle/actions/setup-gradle@v4
+      - name: build and test (core, world, eval with warnings as errors; service against MySQL 8.4 in Testcontainers)
+        run: ./gradlew build
+      - name: the reports pass their gates
+        run: ./gradlew :eval:gate
+      - name: the held-out run happened once
+        run: |
+          if [ -f reports/heldout.lock ]; then
+            n=$(git log --format=%H --no-renames -- reports/heldout.lock | wc -l)
+            echo "heldout.lock commits: $n"; test "$n" -eq 1
+          fi
+      - name: reports and the shipped model are generated, not edited
+        run: |
+          ./gradlew :eval:readme :eval:exportModel
+          git diff --exit-code -- REPORT.md README.md models/risk-model.json
+      - name: the service image builds
+        run: |
+          ./gradlew :service:installDist
+          docker build -t cashout-fraud-guard:ci .
+
+  terraform:
+    runs-on: ubuntu-24.04
+    defaults:
+      run:
+        working-directory: infra/terraform
+    steps:
+      - uses: actions/checkout@v5
+      - uses: hashicorp/setup-terraform@v3
+      - run: terraform fmt -check -recursive
+      - run: terraform init -backend=false
+      - run: terraform validate
+
+  dashboard:
+    runs-on: ubuntu-24.04
+    defaults:
+      run:
+        working-directory: web
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm run lint
+      - run: npm test
+      - run: npm run build
