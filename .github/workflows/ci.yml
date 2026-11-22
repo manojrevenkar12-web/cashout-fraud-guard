@@ -18,6 +18,17 @@ jobs:
       - uses: gradle/actions/setup-gradle@v4
       - name: build and test (core, world, eval with warnings as errors; service against MySQL 8.4 in Testcontainers)
         run: ./gradlew build
+      - name: test counts per module
+        run: |
+          python3 - <<'PY'
+          import glob, xml.etree.ElementTree as ET
+          for m in ["core", "world", "eval", "service"]:
+              n = f = s = 0
+              for x in glob.glob(f"{m}/build/test-results/test/*.xml"):
+                  r = ET.parse(x).getroot(); n += int(r.get("tests")); f += int(r.get("failures")) + int(r.get("errors")); s += int(r.get("skipped"))
+              print(f"{m}: {n} tests, {f} failed, {s} skipped")
+              assert n > 0 and f == 0 and s == 0, m
+          PY
       - name: the reports pass their gates
         run: ./gradlew :eval:gate
       - name: the held-out run happened once

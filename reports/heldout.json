@@ -1,0 +1,948 @@
+{
+    "set": "heldout",
+    "seeds": [
+        7101,
+        7102,
+        7103
+    ],
+    "config_sha": "207cb750143b07b0",
+    "generated_at": "2026-11-22",
+    "facts": {
+        "accounts": 31650.0,
+        "fraud_accounts": 2956.0,
+        "live_cashouts": 67549.0,
+        "live_fraud_cashouts": 4788.0,
+        "training_examples": 65577.0,
+        "training_positives": 1212.0,
+        "weeks": 24
+    },
+    "designs": {
+        "typical": {
+            "label": "Typical setup: VPN block, selfie at first payout, large cash-outs reviewed in order",
+            "total_cost": [
+                1557.4642,
+                1436.8241,
+                1688.2561
+            ],
+            "fraud_loss": [
+                390.9447,
+                352.201,
+                433.7512
+            ],
+            "friction_loss": [
+                795.2903,
+                740.2531,
+                854.7762
+            ],
+            "analyst_cost": [
+                172.9583,
+                137.0833,
+                214.375
+            ],
+            "support_cost": [
+                141.25,
+                117.1875,
+                167.8125
+            ],
+            "step_up_cost": [
+                57.0208,
+                50.0313,
+                63.875
+            ],
+            "fraud_paid_share": [
+                0.6375,
+                0.5574,
+                0.7144
+            ],
+            "wrong_bans": [
+                52.9167,
+                50.0833,
+                55.625
+            ],
+            "wrong_bans_per_10k": [
+                202.6735,
+                191.5318,
+                214.5253
+            ],
+            "honest_late_share": [
+                0.0256,
+                0.0243,
+                0.0269
+            ],
+            "analyst_hours": [
+                4.9417,
+                3.9167,
+                6.125
+            ],
+            "step_ups": [
+                228.0833,
+                200.125,
+                255.5
+            ],
+            "honest_appeals_requeued": [
+                4.0833,
+                3.25,
+                4.9167
+            ],
+            "fraud_appeals_requeued": [
+                2.375,
+                1.5,
+                3.375
+            ],
+            "total_cost_cut_vs_typical": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "fraud_loss_cut_vs_typical": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "flow_fraud_paid_now": 2113.0,
+            "flow_honest_paid_later": 422.0,
+            "flow_honest_not_paid": 1183.0,
+            "flow_honest_paid_after_selfie": 3193.0,
+            "flow_honest_paid_now": 57963.0,
+            "flow_fraud_paid_after_selfie": 697.0,
+            "flow_fraud_not_paid": 1733.0,
+            "flow_fraud_paid_later": 245.0,
+            "bans_by_a_person_share": 0.0441,
+            "farm_accounts_stopped_by_second_payout_share": 0.9458,
+            "honest_restored": 93.0,
+            "honest_appeals": 776.0,
+            "honest_held_open_at_end": 17.0,
+            "fraud_loss_farm": 1437.1715,
+            "fraud_loss_multi": 5133.205,
+            "fraud_loss_geo_vpn": 4.8565,
+            "fraud_loss_takeover": 614.99,
+            "fraud_loss_offer": 2192.45
+        },
+        "strict_rules": {
+            "label": "Strict rules: ban on any red flag",
+            "total_cost": [
+                2159.4005,
+                1760.0675,
+                2564.3441
+            ],
+            "fraud_loss": [
+                240.3818,
+                203.4955,
+                282.271
+            ],
+            "friction_loss": [
+                1432.3312,
+                1123.3453,
+                1752.9588
+            ],
+            "analyst_cost": [
+                227.7917,
+                185.7917,
+                275.0417
+            ],
+            "support_cost": [
+                218.2292,
+                167.5,
+                270.1042
+            ],
+            "step_up_cost": [
+                40.6667,
+                36.2396,
+                44.4688
+            ],
+            "fraud_paid_share": [
+                0.5562,
+                0.4567,
+                0.6557
+            ],
+            "wrong_bans": [
+                94.5417,
+                75.6667,
+                114.4167
+            ],
+            "wrong_bans_per_10k": [
+                371.6774,
+                295.3662,
+                451.4209
+            ],
+            "honest_late_share": [
+                0.0424,
+                0.0347,
+                0.0506
+            ],
+            "analyst_hours": [
+                6.5083,
+                5.3083,
+                7.8583
+            ],
+            "step_ups": [
+                162.6667,
+                144.9583,
+                177.875
+            ],
+            "honest_appeals_requeued": [
+                5.75,
+                4.5,
+                6.9583
+            ],
+            "fraud_appeals_requeued": [
+                3.125,
+                2.0,
+                4.3333
+            ],
+            "total_cost_cut_vs_typical": [
+                -0.3865,
+                -0.5749,
+                -0.1806
+            ],
+            "fraud_loss_cut_vs_typical": [
+                0.3851,
+                0.2818,
+                0.4737
+            ],
+            "flow_fraud_paid_now": 705.0,
+            "flow_honest_paid_later": 455.0,
+            "flow_honest_not_paid": 2136.0,
+            "flow_honest_paid_after_selfie": 2879.0,
+            "flow_honest_paid_now": 55871.0,
+            "flow_fraud_paid_after_selfie": 216.0,
+            "flow_fraud_not_paid": 2139.0,
+            "flow_fraud_paid_later": 121.0,
+            "bans_by_a_person_share": 0.0125,
+            "farm_accounts_stopped_by_second_payout_share": 0.9993,
+            "honest_restored": 139.0,
+            "honest_appeals": 1380.0,
+            "honest_held_open_at_end": 13.0,
+            "fraud_loss_farm": 129.8715,
+            "fraud_loss_multi": 1445.339,
+            "fraud_loss_geo_vpn": 1.6225,
+            "fraud_loss_takeover": 1796.82,
+            "fraud_loss_offer": 2395.51
+        },
+        "model_only": {
+            "label": "Risk model alone: pay or hold, no ring graph, no selfie",
+            "total_cost": [
+                1225.6981,
+                964.7014,
+                1486.6736
+            ],
+            "fraud_loss": [
+                604.5032,
+                466.3912,
+                752.1279
+            ],
+            "friction_loss": [
+                45.747,
+                0.2564,
+                93.5367
+            ],
+            "analyst_cost": [
+                504.5833,
+                384.4167,
+                621.25
+            ],
+            "support_cost": [
+                70.5208,
+                48.5417,
+                93.125
+            ],
+            "step_up_cost": [
+                0.3438,
+                0.0,
+                0.7292
+            ],
+            "fraud_paid_share": [
+                0.5847,
+                0.5005,
+                0.6727
+            ],
+            "wrong_bans": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "wrong_bans_per_10k": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "honest_late_share": [
+                0.0,
+                0.0,
+                1.0E-4
+            ],
+            "analyst_hours": [
+                14.4167,
+                10.9833,
+                17.75
+            ],
+            "step_ups": [
+                1.375,
+                0.0,
+                2.9167
+            ],
+            "honest_appeals_requeued": [
+                0.0833,
+                0.0,
+                0.2083
+            ],
+            "fraud_appeals_requeued": [
+                2.8333,
+                1.8333,
+                3.8333
+            ],
+            "total_cost_cut_vs_typical": [
+                0.213,
+                0.0798,
+                0.3573
+            ],
+            "fraud_loss_cut_vs_typical": [
+                -0.5463,
+                -0.8376,
+                -0.245
+            ],
+            "flow_fraud_paid_now": 4221.0,
+            "flow_honest_paid_later": 3.0,
+            "flow_honest_not_paid": 0.0,
+            "flow_honest_paid_after_selfie": 0.0,
+            "flow_honest_paid_now": 64407.0,
+            "flow_fraud_paid_after_selfie": 0.0,
+            "flow_fraud_not_paid": 2994.0,
+            "flow_fraud_paid_later": 195.0,
+            "bans_by_a_person_share": 1.0,
+            "farm_accounts_stopped_by_second_payout_share": 0.8654,
+            "honest_restored": 4.0,
+            "honest_appeals": 14.0,
+            "honest_held_open_at_end": 11.0,
+            "fraud_loss_farm": 7573.6275,
+            "fraud_loss_multi": 6056.029,
+            "fraud_loss_geo_vpn": 233.7775,
+            "fraud_loss_takeover": 524.08,
+            "fraud_loss_offer": 120.562
+        },
+        "guard": {
+            "label": "This guard",
+            "total_cost": [
+                526.8246,
+                441.8498,
+                615.6635
+            ],
+            "fraud_loss": [
+                111.6521,
+                97.6692,
+                127.5798
+            ],
+            "friction_loss": [
+                45.6221,
+                2.7985,
+                91.1114
+            ],
+            "analyst_cost": [
+                317.3576,
+                272.5868,
+                365.4583
+            ],
+            "support_cost": [
+                20.9635,
+                14.5052,
+                27.9688
+            ],
+            "step_up_cost": [
+                31.2292,
+                27.6875,
+                35.1458
+            ],
+            "fraud_paid_share": [
+                0.4191,
+                0.3311,
+                0.5071
+            ],
+            "wrong_bans": [
+                0.1667,
+                0.0,
+                0.375
+            ],
+            "wrong_bans_per_10k": [
+                0.6103,
+                0.0,
+                1.3723
+            ],
+            "honest_late_share": [
+                0.0031,
+                0.0024,
+                0.0039
+            ],
+            "analyst_hours": [
+                9.0674,
+                7.7882,
+                10.4417
+            ],
+            "step_ups": [
+                124.9167,
+                110.75,
+                140.5833
+            ],
+            "honest_appeals_requeued": [
+                0.4583,
+                0.25,
+                0.7083
+            ],
+            "fraud_appeals_requeued": [
+                3.5833,
+                2.2917,
+                4.9583
+            ],
+            "total_cost_cut_vs_typical": [
+                0.6617,
+                0.6194,
+                0.7014
+            ],
+            "fraud_loss_cut_vs_typical": [
+                0.7144,
+                0.6797,
+                0.7474
+            ],
+            "flow_fraud_paid_now": 972.0,
+            "flow_honest_paid_later": 187.0,
+            "flow_honest_not_paid": 9.0,
+            "flow_honest_paid_after_selfie": 1853.0,
+            "flow_honest_paid_now": 62358.0,
+            "flow_fraud_paid_after_selfie": 159.0,
+            "flow_fraud_not_paid": 1790.0,
+            "flow_fraud_paid_later": 22.0,
+            "bans_by_a_person_share": 1.0,
+            "farm_accounts_stopped_by_second_payout_share": 0.9972,
+            "honest_restored": 4.0,
+            "honest_appeals": 27.0,
+            "honest_held_open_at_end": 16.0,
+            "fraud_loss_farm": 324.5895,
+            "fraud_loss_multi": 1730.113,
+            "fraud_loss_geo_vpn": 233.7775,
+            "fraud_loss_takeover": 257.31,
+            "fraud_loss_offer": 133.861
+        },
+        "no_graph": {
+            "label": "Guard without the ring graph",
+            "total_cost": [
+                891.0578,
+                722.6631,
+                1065.4741
+            ],
+            "fraud_loss": [
+                525.1565,
+                437.4527,
+                618.0649
+            ],
+            "friction_loss": [
+                43.3839,
+                0.0,
+                88.4549
+            ],
+            "analyst_cost": [
+                281.9444,
+                202.4653,
+                369.3229
+            ],
+            "support_cost": [
+                15.1042,
+                9.6875,
+                21.4063
+            ],
+            "step_up_cost": [
+                25.4688,
+                15.2813,
+                37.6354
+            ],
+            "fraud_paid_share": [
+                0.6715,
+                0.596,
+                0.7439
+            ],
+            "wrong_bans": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "wrong_bans_per_10k": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "honest_late_share": [
+                0.0,
+                0.0,
+                1.0E-4
+            ],
+            "analyst_hours": [
+                8.0556,
+                5.7847,
+                10.5521
+            ],
+            "step_ups": [
+                101.875,
+                61.125,
+                150.5417
+            ],
+            "honest_appeals_requeued": [
+                0.0833,
+                0.0,
+                0.2083
+            ],
+            "fraud_appeals_requeued": [
+                2.375,
+                1.4167,
+                3.5417
+            ],
+            "total_cost_cut_vs_typical": [
+                0.4279,
+                0.3411,
+                0.5167
+            ],
+            "fraud_loss_cut_vs_typical": [
+                -0.3433,
+                -0.5643,
+                -0.1378
+            ],
+            "flow_fraud_paid_now": 3954.0,
+            "flow_honest_paid_later": 2.0,
+            "flow_honest_not_paid": 0.0,
+            "flow_honest_paid_after_selfie": 24.0,
+            "flow_honest_paid_now": 64387.0,
+            "flow_fraud_paid_after_selfie": 44.0,
+            "flow_fraud_not_paid": 1778.0,
+            "flow_fraud_paid_later": 51.0,
+            "bans_by_a_person_share": 1.0,
+            "farm_accounts_stopped_by_second_payout_share": 0.9185,
+            "honest_restored": 4.0,
+            "honest_appeals": 14.0,
+            "honest_held_open_at_end": 11.0,
+            "fraud_loss_farm": 5944.1945,
+            "fraud_loss_multi": 6060.999,
+            "fraud_loss_geo_vpn": 233.7775,
+            "fraud_loss_takeover": 264.27,
+            "fraud_loss_offer": 100.516
+        },
+        "no_step_up": {
+            "label": "Guard without the selfie step-up",
+            "total_cost": [
+                533.1604,
+                457.4016,
+                609.3979
+            ],
+            "fraud_loss": [
+                277.6171,
+                250.5734,
+                304.3551
+            ],
+            "friction_loss": [
+                43.8749,
+                0.9819,
+                89.1169
+            ],
+            "analyst_cost": [
+                197.6528,
+                151.9583,
+                247.5764
+            ],
+            "support_cost": [
+                13.724,
+                8.2813,
+                19.7917
+            ],
+            "step_up_cost": [
+                0.2917,
+                0.0,
+                0.6146
+            ],
+            "fraud_paid_share": [
+                0.6311,
+                0.5376,
+                0.7222
+            ],
+            "wrong_bans": [
+                0.0417,
+                0.0,
+                0.125
+            ],
+            "wrong_bans_per_10k": [
+                0.1489,
+                0.0,
+                0.4466
+            ],
+            "honest_late_share": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "analyst_hours": [
+                5.6472,
+                4.3417,
+                7.0736
+            ],
+            "step_ups": [
+                1.1667,
+                0.0,
+                2.4583
+            ],
+            "honest_appeals_requeued": [
+                0.0833,
+                0.0,
+                0.2083
+            ],
+            "fraud_appeals_requeued": [
+                2.1667,
+                1.1667,
+                3.4167
+            ],
+            "total_cost_cut_vs_typical": [
+                0.6577,
+                0.6227,
+                0.6946
+            ],
+            "fraud_loss_cut_vs_typical": [
+                0.2899,
+                0.2142,
+                0.3617
+            ],
+            "flow_fraud_paid_now": 2984.0,
+            "flow_honest_paid_later": 0.0,
+            "flow_honest_not_paid": 1.0,
+            "flow_honest_paid_after_selfie": 0.0,
+            "flow_honest_paid_now": 64412.0,
+            "flow_fraud_paid_after_selfie": 0.0,
+            "flow_fraud_not_paid": 1422.0,
+            "flow_fraud_paid_later": 0.0,
+            "bans_by_a_person_share": 1.0,
+            "farm_accounts_stopped_by_second_payout_share": 0.9958,
+            "honest_restored": 4.0,
+            "honest_appeals": 15.0,
+            "honest_held_open_at_end": 11.0,
+            "fraud_loss_farm": 370.481,
+            "fraud_loss_multi": 5749.492,
+            "fraud_loss_geo_vpn": 233.7775,
+            "fraud_loss_takeover": 268.11,
+            "fraud_loss_offer": 40.95
+        },
+        "no_ring_review": {
+            "label": "Guard reviewing a confirmed ring one account at a time",
+            "total_cost": [
+                644.6861,
+                522.0697,
+                769.7647
+            ],
+            "fraud_loss": [
+                117.8634,
+                102.8955,
+                134.1845
+            ],
+            "friction_loss": [
+                45.2688,
+                2.27,
+                91.5539
+            ],
+            "analyst_cost": [
+                429.6007,
+                346.7187,
+                515.6424
+            ],
+            "support_cost": [
+                19.2448,
+                13.151,
+                25.7031
+            ],
+            "step_up_cost": [
+                32.7083,
+                28.6042,
+                37.1354
+            ],
+            "fraud_paid_share": [
+                0.3884,
+                0.3072,
+                0.4677
+            ],
+            "wrong_bans": [
+                0.125,
+                0.0,
+                0.25
+            ],
+            "wrong_bans_per_10k": [
+                0.4745,
+                0.0,
+                0.9719
+            ],
+            "honest_late_share": [
+                0.0035,
+                0.0029,
+                0.0042
+            ],
+            "analyst_hours": [
+                12.2743,
+                9.9062,
+                14.7326
+            ],
+            "step_ups": [
+                130.8333,
+                114.4167,
+                148.5417
+            ],
+            "honest_appeals_requeued": [
+                0.5,
+                0.25,
+                0.75
+            ],
+            "fraud_appeals_requeued": [
+                3.625,
+                2.4583,
+                4.9167
+            ],
+            "total_cost_cut_vs_typical": [
+                0.5861,
+                0.5245,
+                0.6466
+            ],
+            "fraud_loss_cut_vs_typical": [
+                0.6985,
+                0.6649,
+                0.7299
+            ],
+            "flow_fraud_paid_now": 1004.0,
+            "flow_honest_paid_later": 214.0,
+            "flow_honest_not_paid": 9.0,
+            "flow_honest_paid_after_selfie": 1847.0,
+            "flow_honest_paid_now": 62336.0,
+            "flow_fraud_paid_after_selfie": 162.0,
+            "flow_fraud_not_paid": 2145.0,
+            "flow_fraud_paid_later": 32.0,
+            "bans_by_a_person_share": 1.0,
+            "farm_accounts_stopped_by_second_payout_share": 0.9942,
+            "honest_restored": 4.0,
+            "honest_appeals": 26.0,
+            "honest_held_open_at_end": 17.0,
+            "fraud_loss_farm": 408.8245,
+            "fraud_loss_multi": 1805.804,
+            "fraud_loss_geo_vpn": 233.7775,
+            "fraud_loss_takeover": 257.31,
+            "fraud_loss_offer": 123.006
+        },
+        "rule_labels": {
+            "label": "Guard trained on the old rule's bans as fraud labels",
+            "total_cost": [
+                666.7513,
+                577.4148,
+                755.8626
+            ],
+            "fraud_loss": [
+                100.0862,
+                81.7659,
+                120.668
+            ],
+            "friction_loss": [
+                73.4533,
+                33.2944,
+                122.5729
+            ],
+            "analyst_cost": [
+                428.9931,
+                381.2569,
+                479.6701
+            ],
+            "support_cost": [
+                22.2396,
+                15.7813,
+                29.349
+            ],
+            "step_up_cost": [
+                41.9792,
+                38.3646,
+                45.875
+            ],
+            "fraud_paid_share": [
+                0.333,
+                0.2664,
+                0.4005
+            ],
+            "wrong_bans": [
+                1.9583,
+                1.2917,
+                2.7083
+            ],
+            "wrong_bans_per_10k": [
+                7.2412,
+                4.7653,
+                9.9534
+            ],
+            "honest_late_share": [
+                0.0058,
+                0.005,
+                0.0067
+            ],
+            "analyst_hours": [
+                12.2569,
+                10.8931,
+                13.7049
+            ],
+            "step_ups": [
+                167.9167,
+                153.4583,
+                183.5
+            ],
+            "honest_appeals_requeued": [
+                0.5417,
+                0.25,
+                0.875
+            ],
+            "fraud_appeals_requeued": [
+                3.5417,
+                2.25,
+                4.9167
+            ],
+            "total_cost_cut_vs_typical": [
+                0.5719,
+                0.5242,
+                0.6164
+            ],
+            "fraud_loss_cut_vs_typical": [
+                0.744,
+                0.6988,
+                0.7845
+            ],
+            "flow_fraud_paid_now": 696.0,
+            "flow_honest_paid_later": 322.0,
+            "flow_honest_not_paid": 52.0,
+            "flow_honest_paid_after_selfie": 2612.0,
+            "flow_honest_paid_now": 61386.0,
+            "flow_fraud_paid_after_selfie": 155.0,
+            "flow_fraud_not_paid": 1917.0,
+            "flow_fraud_paid_later": 25.0,
+            "bans_by_a_person_share": 1.0,
+            "farm_accounts_stopped_by_second_payout_share": 0.9993,
+            "honest_restored": 5.0,
+            "honest_appeals": 51.0,
+            "honest_held_open_at_end": 17.0,
+            "fraud_loss_farm": 223.2355,
+            "fraud_loss_multi": 1343.321,
+            "fraud_loss_geo_vpn": 7.8265,
+            "fraud_loss_takeover": 251.54,
+            "fraud_loss_offer": 576.147
+        },
+        "no_reply_drafts": {
+            "label": "Guard without the appeal reader and reply drafts",
+            "total_cost": [
+                589.7152,
+                490.7728,
+                695.9983
+            ],
+            "fraud_loss": [
+                111.6521,
+                97.6692,
+                127.5798
+            ],
+            "friction_loss": [
+                45.6221,
+                2.7985,
+                91.1114
+            ],
+            "analyst_cost": [
+                317.3576,
+                272.5868,
+                365.4583
+            ],
+            "support_cost": [
+                83.8542,
+                58.0208,
+                111.875
+            ],
+            "step_up_cost": [
+                31.2292,
+                27.6875,
+                35.1458
+            ],
+            "fraud_paid_share": [
+                0.4191,
+                0.3311,
+                0.5071
+            ],
+            "wrong_bans": [
+                0.1667,
+                0.0,
+                0.375
+            ],
+            "wrong_bans_per_10k": [
+                0.6103,
+                0.0,
+                1.3723
+            ],
+            "honest_late_share": [
+                0.0031,
+                0.0024,
+                0.0039
+            ],
+            "analyst_hours": [
+                9.0674,
+                7.7882,
+                10.4417
+            ],
+            "step_ups": [
+                124.9167,
+                110.75,
+                140.5833
+            ],
+            "honest_appeals_requeued": [
+                0.1667,
+                0.0417,
+                0.3333
+            ],
+            "fraud_appeals_requeued": [
+                3.5417,
+                2.2917,
+                4.9167
+            ],
+            "total_cost_cut_vs_typical": [
+                0.6214,
+                0.5723,
+                0.6687
+            ],
+            "fraud_loss_cut_vs_typical": [
+                0.7144,
+                0.6797,
+                0.7474
+            ],
+            "flow_fraud_paid_now": 972.0,
+            "flow_honest_paid_later": 187.0,
+            "flow_honest_not_paid": 9.0,
+            "flow_honest_paid_after_selfie": 1853.0,
+            "flow_honest_paid_now": 62358.0,
+            "flow_fraud_paid_after_selfie": 159.0,
+            "flow_fraud_not_paid": 1790.0,
+            "flow_fraud_paid_later": 22.0,
+            "bans_by_a_person_share": 1.0,
+            "farm_accounts_stopped_by_second_payout_share": 0.9972,
+            "honest_restored": 4.0,
+            "honest_appeals": 27.0,
+            "honest_held_open_at_end": 16.0,
+            "fraud_loss_farm": 324.5895,
+            "fraud_loss_multi": 1730.113,
+            "fraud_loss_geo_vpn": 233.7775,
+            "fraud_loss_takeover": 257.31,
+            "fraud_loss_offer": 133.861
+        }
+    },
+    "model_weights_first_seed": {
+        "device_failed_attestation": 0.0881,
+        "device_basic_attestation": 0.0272,
+        "vpn_or_datacenter_share": -0.0553,
+        "geo_mismatch_share": 0.0658,
+        "earn_cents_per_minute": 0.5975,
+        "scripted_timing": 0.2546,
+        "offers_per_offer_hour": 0.6754,
+        "account_age_days": 0.0299,
+        "new_payout_account": 0.1201,
+        "ring_size": 0.0744,
+        "ring_confirmed_fraud": 0.0641,
+        "accounts_on_payout_account": -0.007,
+        "accounts_on_fingerprint": -0.0191,
+        "datacenter_network_fraud_share": 0.0342,
+        "amount": 0.0579,
+        "devices_in_window": 0.0434
+    }
+}
