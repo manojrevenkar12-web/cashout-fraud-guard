@@ -21,12 +21,13 @@ dependencies {
     implementation("com.google.inject:guice:7.0.0")
     implementation("org.liquibase:liquibase-core:4.29.2")
     implementation("com.zaxxer:HikariCP:6.2.1")
-    runtimeOnly("com.mysql:mysql-connector-j:9.1.0")
+    // the MySQL driver pulls protobuf 4 for its X DevAPI, which we do not use; it would replace the protobuf the stubs need
+    runtimeOnly("com.mysql:mysql-connector-j:9.1.0") { exclude(group = "com.google.protobuf") }
     runtimeOnly("org.slf4j:slf4j-simple:2.0.16")
 
     testImplementation("io.grpc:grpc-inprocess:$grpc")
     testImplementation("org.testcontainers:mysql:1.20.4")
-    testImplementation("com.mysql:mysql-connector-j:9.1.0")
+    testImplementation("com.mysql:mysql-connector-j:9.1.0") { exclude(group = "com.google.protobuf") }
 }
 
 protobuf {
